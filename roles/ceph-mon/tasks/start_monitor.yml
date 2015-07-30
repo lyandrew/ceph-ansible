@@ -27,12 +27,6 @@
   changed_when: false
   when: ansible_distribution != "Ubuntu"
 
-- name: collect admin and bootstrap keys
-  command: ceph-create-keys --id {{ ansible_hostname }}
-  changed_when: false
-  failed_when:  false
-  when: ansible_os_family == 'RedHat'
-
 - name: get ceph monitor version
   shell: ceph daemon mon."{{ ansible_hostname }}" version | cut -d '"' -f 4 | cut -f 1,2 -d '.'
   changed_when: false
